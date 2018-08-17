@@ -1,13 +1,12 @@
-## 用js来缓存数据，封装了具有时效性的localStorage数据
+# 用js来缓存数据，封装了具有时效性的localStorage数据
 
-# 引入依赖的脚步文件
-
+## 引入依赖的脚步文件
 ```html
 <script src="js/jquery.min.js"></script>
 <script src="js/cache-data.js"></script>
 ```
 
-# 缓存在内存变量中的数据操作案例
+## 缓存在内存变量中的数据操作案例
 ```js
 var cache = $.cacheData;
 
@@ -71,7 +70,7 @@ cache.removeData({'livingRoom': 'safa', 'washroom': '1', 'root': 'myName'});
 cache.log('all');
 ```
 
-# 缓存于localStorage中的数据
+## 缓存于localStorage中的数据
 ```js
 var cache = $.cacheData;
 

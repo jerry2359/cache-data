@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1, user-scalable=no">
+    <title></title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<a href="demo-cache-storage2.html">link to demo2</a>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/cache-data.js"></script>
+<script>
+
+    var cache = $.cacheData;
+
+    //存储之后开始倒计时失效时间
+    cache.localStorage.setItem('hobby', '游泳'); // 默认无期限
+    cache.localStorage.setItem('name', 'jerry', {'day': 2}); //天
+    cache.localStorage.setItem('name2', 'jerry', {'hours': 0.01}); //小时
+    cache.localStorage.setItem('name3', 'jerry', {'minutes': 1}); //分
+    cache.localStorage.setItem('name4', 'jerry', {'seconds': 1}); //秒
+
+    //存储之后 在每天特定时间点之前有效，特定时间点之后失效
+    if (!cache.localStorage.getItem('campaign')) {
+        cache.localStorage.setItem('campaign', 'vw beetle dune', {'everyDay': '23:59:59'}); //时间格式
+        console.log('活动存储不存在，新建一个');
+    };
+
+    //存储之后 在 截止日期 之前有效，之后失效
+    cache.localStorage.setItem('miaosha', '秒杀抢购活动进行中...', {'asOfDate': '2018/8/17 17:19:30'});
+
+    /*setTimeout(function() {
+        console.log( cache.localStorage.getItem('name') );
+    }, (1000*37));*/
+    /*setInterval(function() {
+        console.log(cache.localStorage.getItem('campaign'));
+    }, 500);*/
+    setInterval(function() {
+        console.log(cache.localStorage.getItem('miaosha'));
+    }, 500);
+
+    //删除数据
+    cache.localStorage.removeItem('name3');
+
+    cache.log('localStorage'); //参数2为true表示打印原始localStorage数据
+    cache.log('localStorage/name4', true);
+
+
+</script>
+</body>
+</html>
